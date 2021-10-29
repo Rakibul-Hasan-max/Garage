@@ -16,7 +16,13 @@ const ManageServices = () => {
             method: 'DELETE'
         })
         .then(res => res.json())
-            .then(data => console.log(data));
+        .then(data => {
+            if(data.deletedCount) {
+                alert('deleted')
+                const remaining = services.filter(service => service._id !== id);
+                setServices(remaining);
+            }
+        })
     }
 
     return (
